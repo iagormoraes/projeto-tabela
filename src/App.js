@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+import response from "./response.json";
+
+import Tabela from "./Tabela";
+import Titulo from "./Titulo";
 
 function App() {
+  const [lista, setList] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setList(response);
+    }, 3000);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Titulo title="Escola Rogacionista" />
+      <div className="container">
+        <div className="row">
+          <div className="col-12 col-md-6">
+            <Tabela lista={lista} />
+          </div>
+          <div className="col-12 col-md-6">
+            <Tabela lista={lista} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
